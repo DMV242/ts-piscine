@@ -4,16 +4,16 @@ function afficherInfoProfessionnelle(person) {
         console.log(`Employé: ${person.nom} travaille comme ${person.poste}.`);
     }
     else {
-        console.log(` Client: ${person.nom} est associé à l'entreprise ${person.entreprise}.`);
+        console.log(`Client: ${person.nom} est associé à l'entreprise ${person.entreprise}.`);
     }
 }
-const person1 = {
-    nom: "David",
-    entreprise: "DePlano"
-};
-const person2 = {
+const employe1 = {
     nom: "Sarah",
     poste: "DRH"
 };
-afficherInfoProfessionnelle(person1);
-afficherInfoProfessionnelle(person2);
+const client1 = {
+    nom: "David",
+    entreprise: "DePlano"
+};
+afficherInfoProfessionnelle(employe1);
+afficherInfoProfessionnelle(client1);
