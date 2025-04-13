@@ -1,25 +1,38 @@
-interface Vehicule{
-    marque:string;
-    annee:number
+interface Vehicule {
+    marque: string;
+    annee: number;
 }
 
-function isVehicule(obj:any): boolean {
-    if( ("marque" in  obj && typeof obj["marque"] === "string")
-        &&("annee" in obj && typeof obj["annee"] === "number")
-    ){
-            return true
+function isVehicule(obj: any): obj is Vehicule {
+    return (
+        "marque" in obj &&
+        typeof obj.marque === "string" &&
+        "annee" in obj &&
+        typeof obj.annee === "number"
+    );
+}
+
+function afficherVehicule(obj: any): void {
+    if (isVehicule(obj)) {
+        console.log(`Le véhicule ${obj.marque} de l'année ${obj.annee} est valide.`);
+    } else {
+        console.log("Objet invalide pour un véhicule.");
     }
-    return false
 }
 
-const vehicule: Vehicule = {
-    annee:2024,
-    marque:"Merco"
-}
-const vehicule2 = {
-    annee:"2024",
-    marque:"Merco"
-}
+// Tests
+const vehiculeValide: Vehicule = {
+    annee: 2024,
+    marque: "Merco"
+};
 
-console.log(isVehicule(vehicule))
-console.log(isVehicule(vehicule2))
+const vehiculeInvalide = {
+    annee: "2024", // string au lieu de number
+    marque: "Merco"
+};
+
+console.log("Test avec un véhicule valide :");
+afficherVehicule(vehiculeValide);
+
+console.log("\nTest avec un véhicule invalide :");
+afficherVehicule(vehiculeInvalide);
